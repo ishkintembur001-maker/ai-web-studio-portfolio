@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AI Web Studio: адаптивные лендинги, страницы для бизнеса, исправление вёрстки и техническая поддержка.">
+  <meta name="color-scheme" content="dark">
+  <title>AI WEB STUDIO — демо-сайт</title>
+  <style>
+    :root{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#ecf6f5;background:#08151c;font-synthesis:none}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;line-height:1.6}
+    a{color:inherit;text-decoration:none}a:focus-visible,button:focus-visible{outline:3px solid #72e7ce;outline-offset:4px}
+    .shell{max-width:1150px;margin:auto;padding:0 25px}header{position:sticky;top:0;z-index:10;background:#08151ce8;backdrop-filter:blur(18px);border-bottom:1px solid #294349}
+    header .shell{display:flex;align-items:center;justify-content:space-between;min-height:82px;gap:20px}
+    .brand{font-weight:900;font-size:1.2rem;letter-spacing:-.03em}.brand span{color:#72e7ce}
+    nav{display:flex;gap:28px}nav a{color:#c4d5d4;font-size:.94rem}
+    nav a:hover{color:#72e7ce}.menu-button{display:none;border:1px solid #547070;color:white;background:transparent;border-radius:12px;padding:10px 14px}
+    .hero{position:relative;overflow:hidden;padding:116px 0 115px;border-bottom:1px solid #294349}
+    .hero:before{content:"";position:absolute;width:650px;height:650px;right:-100px;top:-240px;border-radius:50%;background:radial-gradient(circle,#2f998a63,transparent 66%);pointer-events:none}
+    .hero .shell{position:relative}.eyebrow{text-transform:uppercase;color:#72e7ce;font-size:.78rem;letter-spacing:.22em;font-weight:800}
+    h1{max-width:850px;line-height:1.06;letter-spacing:-.055em;font-size:clamp(3rem,7vw,6rem);margin:20px 0 25px}
+    h1 em{color:#72e7ce;font-style:normal}.lead{font-size:1.15rem;max-width:650px;color:#bfd1d0;margin:0 0 36px}
+    .btn{display:inline-flex;gap:10px;align-items:center;justify-content:center;background:#72e7ce;color:#09231f;padding:15px 25px;border-radius:12px;font-weight:800;transition:transform .2s}
+    .btn:hover{transform:translateY(-2px)}.note{font-size:.84rem;color:#95aaa9;margin-top:19px}
+    section{padding:90px 0}.section-label{color:#72e7ce;letter-spacing:.15em;font-size:.78rem;font-weight:800;text-transform:uppercase}
+    h2{font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.04em;line-height:1.12;margin:15px 0 22px}
+    .sub{color:#b6cbc8;max-width:630px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:17px;margin-top:38px}
+    .card{background:#10252c;border:1px solid #27454a;border-radius:20px;padding:29px;min-height:200px}
+    .card .num{font-size:.85rem;color:#72e7ce;font-weight:800}.card h3{margin:19px 0 8px;font-size:1.25rem;line-height:1.25}
+    .card p{color:#aec7c5;margin:0}.process{background:#0c2028}
+    .step-list{display:grid;gap:15px;max-width:880px;margin-top:34px}
+    .step{display:flex;align-items:flex-start;gap:24px;background:#102930;border:1px solid #2c4b50;padding:23px;border-radius:16px}
+    .step strong{min-width:35px;color:#72e7ce}.step p{margin:0;color:#c4d6d4}
+    .contact{padding:80px 0}.contact-panel{display:flex;justify-content:space-between;align-items:center;gap:24px;padding:45px;background:linear-gradient(115deg,#143d43,#12313b);border:1px solid #366768;border-radius:24px}
+    .contact-panel h2{max-width:620px;margin:0;font-size:clamp(2rem,4vw,3rem)}
+    footer{border-top:1px solid #254247;padding:27px 0;color:#a6bebc;font-size:.87rem}
+    footer .shell{display:flex;justify-content:space-between;gap:16px}
+    @media(max-width:760px){header .shell{min-height:70px}.menu-button{display:block}nav{display:none;position:absolute;top:70px;left:0;right:0;background:#10252c;padding:22px 25px;border-bottom:1px solid #34515a;flex-direction:column;gap:12px}nav.open{display:flex}.hero{padding:78px 0 83px}.cards{grid-template-columns:1fr}section{padding:65px 0}.contact-panel{padding:30px;flex-direction:column;align-items:flex-start}.step{gap:14px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
+    .order-hint{display:block;margin:20px 0 0;font-size:.82rem;color:#bcd1cf;max-width:500px}
+    .work{padding:70px 0;background:#0c2028}.work .card{display:flex;flex-direction:column;gap:13px}
+    .work a{color:#72e7ce;text-decoration:underline;text-underline-offset:4px}
+    </style>
+</head>
+<body>
+<header><div class="shell">
+ <a class="brand" href="#top" aria-label="На главную">AI WEB STUDIO<span> / </span></a>
+ <button class="menu-button" id="menuBtn" type="button" aria-expanded="false" aria-controls="primaryNav">Меню</button>
+ <nav id="primaryNav" aria-label="Основная навигация">
+   <a href="#services">Услуги</a><a href="#work">Пример</a><a href="#process">Процесс</a><a href="#about">Контакты</a>
+ </nav>
+</div></header>
+<main id="top">
+ <div class="hero"><div class="shell">
+   <div class="eyebrow">Лендинги · Адаптивная вёрстка · Доработки</div>
+   <h1>Сайт, который <em>работает на вашу идею.</em></h1>
+   <p class="lead">Разработка современных HTML/CSS/JavaScript-сайтов для небольшого бизнеса. Аккуратная мобильная версия, понятная структура, проверяемый код и прозрачные этапы работы.</p>
+   <a class="btn" href="https://github.com/ishkintembur001-maker/ai-web-studio-portfolio/issues/new?template=request.yml">Обсудить проект <span aria-hidden="true">↗</span></a>
+   <p class="note">Это публичное техническое демо. Реальных клиентских кейсов и отзывов пока нет.</p>
+ </div></div>
+ <section id="services"><div class="shell">
+  <div class="section-label">Чем мы помогаем</div><h2>Каждая деталь имеет значение</h2>
+  <p class="sub">От первого экрана до финальной проверки: показываем, как может выглядеть современный сайт для небольшого бизнеса.</p><div class="cards"><article class="card"><span class="num">01</span><h3>Лендинги</h3><p>Одностраничные сайты с ясным предложением, продуманной структурой и адаптацией под мобильные устройства.</p></article>
+<article class="card"><span class="num">02</span><h3>Корпоративные сайты</h3><p>Удобная навигация, читабельный контент, быстрые страницы и понятные способы связи.</p></article>
+<article class="card"><span class="num">03</span><h3>Доработка</h3><p>Исправление ошибок вёрстки, обновление блоков и улучшение мобильной версии.</p></article></div>
+ </div></section>
+ <section class="process" id="process"><div class="shell">
+  <div class="section-label">Как мы работаем</div><h2>От задачи до результата</h2>
+  <div class="step-list"><article class="step"><strong>01</strong><p>Уточняем задачу и согласуем требования до начала разработки.</p></article>
+<article class="step"><strong>02</strong><p>Собираем макет и рабочую страницу для проверки на разных экранах.</p></article>
+<article class="step"><strong>03</strong><p>Тестируем, исправляем замечания и передаём исходные файлы.</p></article></div>
+ </div></section>
+ <section class="work" id="work"><div class="shell">
+   <div class="section-label">Пример работы</div>
+   <h2>Адаптивный сайт — живое демо</h2>
+   <p class="sub">Этот сайт — собственная демонстрационная работа: написан на HTML, CSS и JavaScript без платных компонентов. Можно посмотреть адаптацию под мобильный экран и изучить исходный код.</p>
+   <div class="cards"><article class="card">
+     <span class="num">01 · Демо</span><h3>Одностраничный сайт</h3>
+     <p>Мобильное меню, блок услуг, этапы работы, CTA, адаптивная сетка и доступная навигация.</p>
+     <a href="https://github.com/ishkintembur001-maker/ai-web-studio-portfolio/blob/main/index.html">Посмотреть исходный код ↗</a>
+   </article></div>
+  </div></section>
+ <section class="contact" id="about"><div class="shell"><div class="contact-panel">
+  <div><div class="section-label">Готовая демонстрация</div><h2>Нужно создать сайт или исправить существующий? Опишите задачу.</h2></div>
+  <div><a class="btn" href="https://github.com/ishkintembur001-maker/ai-web-studio-portfolio/issues/new?template=request.yml">Оставить запрос ↗</a><span class="order-hint">Заявка создаётся публично в GitHub. Не указывайте пароли, личные данные и конфиденциальную информацию.</span></div>
+ </div></div></section>
+</main>
+<footer><div class="shell"><span>AI WEB STUDIO · демонстрационный проект</span><span>Портфолио-демо · Заявки через публичный GitHub</span></div></footer>
+<script>
+  const button=document.getElementById('menuBtn');
+  const nav=document.getElementById('primaryNav');
+  button.addEventListener('click',()=>{
+    const isOpen=nav.classList.toggle('open');
+    button.setAttribute('aria-expanded',String(isOpen));
+  });
+  nav.querySelectorAll('a').forEach(link=>link.addEventListener('click',()=>{
+    nav.classList.remove('open');button.setAttribute('aria-expanded','false');
+  }));
+</script>
+</body>
+</html>

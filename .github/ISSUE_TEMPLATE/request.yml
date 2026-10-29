@@ -1,0 +1,43 @@
+name: "Запрос на сайт"
+description: "Публичная заявка на создание или доработку сайта"
+title: "[Запрос] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Внимание: все заявки здесь общедоступны. Не пишите здесь телефон, email, пароли, API-ключи, персональные данные или коммерческие тайны. Размещение заявки не означает заключение договора.
+  - type: dropdown
+    id: service
+    attributes:
+      label: Тип работы
+      options:
+        - Лендинг или сайт-визитка
+        - Адаптивная вёрстка по макету
+        - Исправление существующего сайта
+        - Другое
+    validations:
+      required: true
+  - type: textarea
+    id: task
+    attributes:
+      label: Описание задачи
+      placeholder: Коротко опишите, какие страницы и функции нужны.
+    validations:
+      required: true
+  - type: dropdown
+    id: budget
+    attributes:
+      label: Примерный бюджет
+      options:
+        - До 5 000 ₽
+        - 5 000–15 000 ₽
+        - 15 000–30 000 ₽
+        - Более 30 000 ₽
+        - Пока неизвестен
+  - type: checkboxes
+    id: acknowledgement
+    attributes:
+      label: Подтверждение
+      options:
+        - label: Я понимаю, что заявка публичная, и не размещаю здесь конфиденциальные данные.
+          required: true
