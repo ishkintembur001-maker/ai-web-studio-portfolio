@@ -8,7 +8,12 @@
 #status{padding:7px 9px;min-width:134px;border-radius:10px;backdrop-filter:none}#status b{font-size:11px}#status small{font-size:10px;margin-top:2px}#hptext{display:none}#wanted{font-size:12px}#mission{padding:7px 9px;top:max(102px,calc(env(safe-area-inset-top) + 94px));max-width:min(188px,48vw);font-size:11px;line-height:1.25;backdrop-filter:none}#mission b{font-size:12px}#mini{top:max(92px,calc(env(safe-area-inset-top) + 84px));height:92px;width:92px;border-radius:13px}#joy{width:106px;height:106px;left:13px;bottom:max(15px,calc(env(safe-area-inset-bottom) + 10px))}#nub{width:48px;height:48px;left:27px;top:27px}#buttons{grid-template-columns:repeat(2,60px);bottom:max(14px,calc(env(safe-area-inset-bottom) + 8px));right:9px;gap:6px}.action{height:52px;border-radius:13px;font-size:9px}.action strong{font-size:20px;line-height:22px}#pause{font-size:13px;padding:6px 9px}
 @media (max-width:390px){#mission{max-width:200px}#mini{width:82px;height:82px}#joy{width:94px;height:94px}#nub{width:42px;height:42px;left:24px;top:24px}#buttons{grid-template-columns:repeat(2,55px)}.action{height:49px}}
 
-</style></head><body><canvas id="game"></canvas><div id="hud" class="hidden"><div id="top"><div id="status"><b>НОЧНОЙ ГОРОД</b><small id="money">💵 $0 · 🏃 Пешком</small><div id="health"><span id="hp"></span></div><small id="hptext">Здоровье: 100</small><div id="wanted">☆☆☆</div></div></div><div id="mission"><b id="mtitle">МИССИЯ</b><span id="mdesc"></span></div><div id="mini"><canvas id="map"></canvas></div><div id="toast"></div><div id="waypoint">◆<small></small></div><div id="hurt"></div><button id="pause" aria-label="Пауза">Ⅱ</button><div id="control"><div id="joy"><div id="nub"></div></div><div id="buttons"><button class="action" id="punch"><strong>✊</strong>УДАР</button><button class="action" id="fire"><strong>⌖</strong>ОГОНЬ</button><button class="action" id="interact"><strong>↕</strong>СЕСТЬ / ВЫЙТИ</button><button class="action" id="run"><strong>⚡</strong>БЕГ / ТОРМОЗ</button></div></div></div><div id="overlay"><div id="panel"><div class="eyebrow">МОБИЛЬНАЯ 3D ИГРА · WEBGL v4</div><h1 class="logo">НОЧНОЙ<br><em>ГОРОД</em></h1><div class="pill">Открытый город · машины · бои · полиция · 4 миссии</div><p id="intro">Тебя подставили. Найди связного, забери секретный кейс и уйди от погони. Город не прощает ошибок.</p><button id="start">ИГРАТЬ</button><div id="controlhint">Джойстик вверх — газ, вниз — задний ход, влево/вправо — руль. Удерживай ТОРМОЗ для остановки. Камера следует за машиной.<br>На компьютере: WASD, E, F, пробел, Shift, P.<br>Полностью автономная игра: интернет не нужен.</div></div></div><script>
+#heroView{position:absolute;right:12px;top:max(173px,calc(env(safe-area-inset-top) + 170px));pointer-events:auto;border:1px solid #c8cbd275;background:linear-gradient(140deg,#232a3be8,#131727e8);box-shadow:0 4px 15px #0008;border-radius:12px;color:#fff;padding:9px 11px;font-size:12px;font-weight:800;z-index:4;touch-action:manipulation}
+#hud.inspect #top,#hud.inspect #mission,#hud.inspect #mini,#hud.inspect #control{display:none}
+#hud.inspect #heroView{top:max(12px,env(safe-area-inset-top));background:#b37d3aed;border-color:#ffe0b3}
+#heroDesc{display:none;position:absolute;bottom:max(44px,calc(env(safe-area-inset-bottom) + 26px));left:50%;transform:translateX(-50%);max-width:90vw;min-width:240px;text-align:center;border-radius:16px;padding:10px 18px;background:#091225d6;color:#e9dfcb;font-size:12px;line-height:1.45}
+#hud.inspect #heroDesc{display:block}
+</style></head><body><canvas id="game"></canvas><div id="hud" class="hidden"><div id="top"><div id="status"><b>НОЧНОЙ ГОРОД</b><small id="money">💵 $0 · 🏃 Пешком</small><div id="health"><span id="hp"></span></div><small id="hptext">Здоровье: 100</small><div id="wanted">☆☆☆</div></div></div><div id="mission"><b id="mtitle">МИССИЯ</b><span id="mdesc"></span></div><div id="mini"><canvas id="map"></canvas></div><button id="heroView" type="button">👤 ГЕРОЙ</button><div id="heroDesc">ТВОЙ ПЕРСОНАЖ — ДАНТЕ<br>Коснись «Вернуться», чтобы продолжить игру.</div><div id="toast"></div><div id="waypoint">◆<small></small></div><div id="hurt"></div><button id="pause" aria-label="Пауза">Ⅱ</button><div id="control"><div id="joy"><div id="nub"></div></div><div id="buttons"><button class="action" id="punch"><strong>✊</strong>УДАР</button><button class="action" id="fire"><strong>⌖</strong>ОГОНЬ</button><button class="action" id="interact"><strong>↕</strong>СЕСТЬ / ВЫЙТИ</button><button class="action" id="run"><strong>⚡</strong>БЕГ / ТОРМОЗ</button></div></div></div><div id="overlay"><div id="panel"><div class="eyebrow">МОБИЛЬНАЯ 3D ИГРА · WEBGL v5</div><h1 class="logo">НОЧНОЙ<br><em>ГОРОД</em></h1><div class="pill">Герой со шрамом · машины · бои · полиция · 4 миссии</div><p id="intro">Тебя подставили. Найди связного, забери секретный кейс и уйди от погони. Город не прощает ошибок.</p><button id="start">ИГРАТЬ</button><div id="controlhint">Джойстик вверх — газ, вниз — задний ход, влево/вправо — руль. Удерживай ТОРМОЗ для остановки. Камера следует за машиной.<br>На компьютере: WASD, E, F, пробел, Shift, P.<br>Полностью автономная игра: интернет не нужен.</div></div></div><script>
 (()=>{'use strict';
 
 const canvas=document.querySelector('#game'),gl=canvas.getContext('webgl',{alpha:true,antialias:true,depth:true,powerPreference:'high-performance',preserveDrawingBuffer:false});
@@ -25,7 +30,7 @@ gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.disable(gl.CULL_FACE);gl.dis
 function resize(){W=innerWidth;H=innerHeight;DPR=Math.min(1.35,devicePixelRatio||1);canvas.width=Math.round(W*DPR);canvas.height=Math.round(H*DPR);gl.viewport(0,0,canvas.width,canvas.height);mini.width=Math.round(116*DPR);mini.height=Math.round(116*DPR);mc.setTransform(DPR,0,0,DPR,0,0)}resize();window.addEventListener('resize',resize);
 
 const TAU=Math.PI*2,rand=(a,b)=>a+Math.random()*(b-a),clamp=(n,a,b)=>Math.max(a,Math.min(b,n)),dst=(a,b)=>Math.hypot(a.x-b.x,a.z-b.z);let seed=89137;function rng(){seed=(seed*1664525+1013904223)>>>0;return seed/4294967296}
-const buildings=[],trees=[],lamps=[],peds=[],cars=[],particles=[];let state='menu',money=0,hp=100,wanted=0,mission=0,missionStage=0,nearCar=null,car=null,player={x:0,z:4,yaw:Math.PI,speed:0,shoot:0,punch:0,walk:0},heroPos={x:0,z:4},camera={x:0,y:13,z:22,yaw:0},key={},stick={x:0,y:0},sprint=false,accel=false,punchCd=0,shootCd=0,spawnCd=0,policeCount=0,time=0,flash=0,last=performance.now(),introDone=false;const getPos=()=>car||player;
+const buildings=[],trees=[],lamps=[],peds=[],cars=[],particles=[];let state='menu',money=0,hp=100,wanted=0,mission=0,missionStage=0,nearCar=null,car=null,player={x:0,z:4,yaw:Math.PI,speed:0,shoot:0,punch:0,walk:0},heroPos={x:0,z:4},camera={x:0,y:4.25,z:10.6,yaw:0},key={},stick={x:0,y:0},sprint=false,accel=false,punchCd=0,shootCd=0,spawnCd=0,policeCount=0,time=0,flash=0,last=performance.now(),introDone=false;const getPos=()=>car||player;
 function info(s){const d=$('toast');d.textContent=s;d.classList.add('show');d.dataset.to=(performance.now()+2300).toString()}
 function build(){for(let gx=-2;gx<=2;gx++)for(let gz=-2;gz<=2;gz++){let cx=gx*45+22.5,cz=gz*45+22.5;let n=rng()>.75?2:1;for(let t=0;t<n;t++){let bw=n===1?25:11,bz=n===1?25:17;let bx=cx+(n===1?0:(t===0?-6.8:6.8)),bzz=cz;let h=10+Math.floor(rng()*7)*4;let k=rng();buildings.push({x:bx,z:bzz,w:bw,d:bz,h,col:k<.25?'#233753':k<.55?'#354763':'#2e344d',rooftop:rng()>.7,lights:rng()>.15})}for(let tt=0;tt<3;tt++){let tx=cx+rand(-14,14),tz=cz+rand(-14,14);if(buildings.every(b=>Math.abs(tx-b.x)>(b.w/2+2)||Math.abs(tz-b.z)>(b.d/2+2)))trees.push({x:tx,z:tz,h:3.4+rand(0,2)})}}
 for(let i=-2;i<=2;i++)for(let j=-2;j<=2;j++){lamps.push({x:i*45+6,z:j*45+7});lamps.push({x:i*45-6,z:j*45-7})}
@@ -35,7 +40,7 @@ for(let i=0;i<3;i++)peds.push({x:68+i*4,z:-41+i*3,yaw:rand(0,TAU),h:100,hostile:
 build();
 
 // Hardware depth-buffered WebGL: consistent occlusion even as the camera moves.
-let mesh=[],cp={},cameraF=1.56;const colorCache={};
+let mesh=[],cp={},cameraF=1.72;const colorCache={};
 function hex(h){if(colorCache[h])return colorCache[h];if(h[0]!=='#')return [100,100,100];const v=parseInt(h.slice(1,7),16);return colorCache[h]=[(v>>16)&255,(v>>8)&255,v&255]}
 function poly(points,col){if(points.length<3)return;const rgb=hex(col),r=rgb[0]/255,g=rgb[1]/255,b=rgb[2]/255;const p0=points[0];for(let i=1;i<points.length-1;i++){const p1=points[i],p2=points[i+1],ux=p1[0]-p0[0],uy=p1[1]-p0[1],uz=p1[2]-p0[2],vx=p2[0]-p0[0],vy=p2[1]-p0[1],vz=p2[2]-p0[2];let nx=uy*vz-uz*vy,ny=uz*vx-ux*vz,nz=ux*vy-uy*vx,len=Math.hypot(nx,ny,nz)||1;nx/=len;ny/=len;nz/=len;for(const p of [p0,p1,p2])mesh.push(p[0],p[1],p[2],r,g,b,nx,ny,nz)}}
 function box(x,y,z,w,h,d,col,rot=0,topCol=null){let c=Math.cos(rot),s=Math.sin(rot),V=[];for(let yi of [y,y+h])for(let zi of [-d/2,d/2])for(let xi of [-w/2,w/2])V.push([x+xi*c+zi*s,yi,z-xi*s+zi*c]);const fs=[[[0,1,3,2],.51],[[4,6,7,5],1.11],[[0,4,5,1],.80],[[1,5,7,3],.93],[[3,7,6,2],.68],[[2,6,4,0],.79]],base=hex(col);for(const [idx,f] of fs){const cc=idx[0]===4&&topCol?topCol:`#${[base[0],base[1],base[2]].map(v=>Math.min(255,Math.floor(v*f)).toString(16).padStart(2,'0')).join('')}`;poly(idx.map(j=>V[j]),cc)}}
@@ -48,13 +53,199 @@ function vehiclePanel(c,points,col){poly(points.map(p=>rotP(c.x,c.z,p[0],p[1],c.
 function cone(x,y,z,rx,ry,rz,col,seg=9){let tip=[x,y+ry,z],base=[];for(let i=0;i<seg;i++){let a=i*2*Math.PI/seg;base.push([x+Math.cos(a)*rx,y,z+Math.sin(a)*rz])}for(let i=0;i<seg;i++)poly([base[i],base[(i+1)%seg],tip],col)}
 function cylinder(x,y,z,r,h,col,seg=9){let bot=[],top=[];for(let i=0;i<seg;i++){let a=i*2*Math.PI/seg;bot.push([x+Math.cos(a)*r,y,z+Math.sin(a)*r]);top.push([x+Math.cos(a)*r,y+h,z+Math.sin(a)*r])}for(let i=0;i<seg;i++)poly([bot[i],bot[(i+1)%seg],top[(i+1)%seg],top[i]],col);poly(top,col)}
 function carWheel(c,s,z){const v=relative(c.x,c.z,s*1.42,z,c.y),ax=Math.cos(c.yaw)*s,az=-Math.sin(c.yaw)*s;const center=[v[0],.49,v[1]];sphere(center[0],center[1],center[2],.29,.5,.49,'#121923',12);for(const q of [.20,.27]){const x=center[0]+ax*q,z1=center[2]+az*q;sphere(x,.49,z1,.055,.295,.29,q>.2?'#8f9caa':'#d9dee4',12)}for(let i=0;i<5;i++){let ang=i*Math.PI*2/5,x=center[0]+ax*.331,z1=center[2]+az*.331;const dx=Math.cos(ang)*.19,dy=Math.sin(ang)*.19;box(x+Math.sin(c.yaw)*dx,.49+dy,z1+Math.cos(c.yaw)*dx,.07,.05,.03,'#d3d9de',c.yaw)}}
-function basis(){const target=getPos();if(car){const desired=car.yaw+Math.PI;const diff=Math.atan2(Math.sin(desired-camera.yaw),Math.cos(desired-camera.yaw));camera.yaw+=clamp(diff,-.090,.090);}const dist=car?17.5:16.8,ht=car?8.2:9.5,lag=car?.095:.105;camera.x+=(target.x+Math.sin(camera.yaw)*dist-camera.x)*lag;camera.z+=(target.z+Math.cos(camera.yaw)*dist-camera.z)*lag;camera.y+=(ht-camera.y)*lag;const tx=target.x,ty=car?1.6:1.8,tz=target.z;let fx=tx-camera.x,fy=ty-camera.y,fz=tz-camera.z;let fl=Math.hypot(fx,fy,fz)||1;fx/=fl;fy/=fl;fz/=fl;let rx=-fz,rz=fx,rl=Math.hypot(rx,rz)||1;rx/=rl;rz/=rl;let ulx=-fy*rz,uly=rz*fx-rx*fz,ulz=fy*rx,ul=Math.hypot(ulx,uly,ulz)||1;ulx/=ul;uly/=ul;ulz/=ul;cp={fx,fy,fz,rx,rz,ulx,uly,ulz};}
+let heroInspect=false,cameraSwipe=0,cameraPitch=0,cameraLookActive=false,camDragId=-1,camDownX=0,camDownY=0;
+function unobstructed(camTarget,camEnd){
+  // Segment-versus-expanded building AABBs. Camera stays in front of walls.
+  const ox=camTarget.x,oz=camTarget.z,dx=camEnd.x-ox,dz=camEnd.z-oz;
+  let fraction=1;
+  for(const b of buildings){
+    let xmin=b.x-b.w*.5-.48,xmax=b.x+b.w*.5+.48;
+    let zmin=b.z-b.d*.5-.48,zmax=b.z+b.d*.5+.48;
+    let tn=0,tf=1;
+    for(const [o,d,min,max] of [[ox,dx,xmin,xmax],[oz,dz,zmin,zmax]]){
+      if(Math.abs(d)<.00001){if(o<min||o>max){tn=2;break}}
+      else{let t1=(min-o)/d,t2=(max-o)/d;if(t1>t2)[t1,t2]=[t2,t1];tn=Math.max(tn,t1);tf=Math.min(tf,t2)}
+    }
+    if(tf>=tn&&tn>=0&&tn<1&&tn<fraction){
+      const contactY=camTarget.y+(camEnd.y-camTarget.y)*tn;
+      if(contactY<b.h+.8)fraction=Math.max(.12,tn-.045);
+    }
+  }
+  return fraction;
+}
+function basis(){
+  const target=getPos();
+  // Chase camera behind the vehicle. Foot camera is controlled by touch/look.
+  const aim=heroInspect?player.yaw:car?car.yaw+Math.PI:player.yaw+Math.PI+cameraSwipe;
+  const desiredYaw=Math.atan2(Math.sin(aim-camera.yaw),Math.cos(aim-camera.yaw));
+  // Do not rotate the view too abruptly on foot; keep joystick orientation predictable.
+  const yawResponse=heroInspect?.22:car?.10:(!cameraLookActive?.055:.012);
+  camera.yaw+=clamp(desiredYaw*yawResponse,-.070,.070);
+  const distance=heroInspect?4.7:car?11.8:8.6,high=heroInspect?2.48:car?5.3:4.25;
+  const tx=target.x,ty=heroInspect?1.54:car?1.25:1.65,tz=target.z;
+  const desired={x:tx+Math.sin(camera.yaw)*distance,y:high+cameraPitch,z:tz+Math.cos(camera.yaw)*distance};
+  const obstruction=unobstructed({x:tx,y:ty,z:tz},desired);
+  const good={x:tx+(desired.x-tx)*obstruction,y:ty+(desired.y-ty)*obstruction,z:tz+(desired.z-tz)*obstruction};
+  const response=heroInspect?.25:car?.12:.16;
+  camera.x+=(good.x-camera.x)*response;
+  camera.z+=(good.z-camera.z)*response;
+  camera.y+=(good.y-camera.y)*response;
+  const fx0=tx-camera.x,fy0=ty-camera.y,fz0=tz-camera.z;
+  let fl=Math.hypot(fx0,fy0,fz0)||1;
+  const fx=fx0/fl,fy=fy0/fl,fz=fz0/fl;
+  let rx=-fz,rz=fx,rl=Math.hypot(rx,rz)||1;rx/=rl;rz/=rl;
+  let ulx=-fy*rz,uly=rz*fx-rx*fz,ulz=fy*rx,ul=Math.hypot(ulx,uly,ulz)||1;
+  ulx/=ul;uly/=ul;ulz/=ul;
+  cp={fx,fy,fz,rx,rz,ulx,uly,ulz};
+}
 function project(x,y,z){const dx=x-camera.x,dy=y-camera.y,dz=z-camera.z,depth=dx*cp.fx+dy*cp.fy+dz*cp.fz;if(depth<=.2)return null;return [W/2+(dx*cp.rx+dz*cp.rz)*cameraF*H/2/depth,H/2-(dx*cp.ulx+dy*cp.uly+dz*cp.ulz)*cameraF*H/2/depth,depth]}
 function upload(buffer,data,usage){gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(data),usage);return data.length/9}
 function batch(buffer,count){if(!count)return;gl.bindBuffer(gl.ARRAY_BUFFER,buffer);gl.enableVertexAttribArray(locations.aPos);gl.enableVertexAttribArray(locations.aCol);gl.enableVertexAttribArray(locations.aNormal);gl.vertexAttribPointer(locations.aPos,3,gl.FLOAT,false,36,0);gl.vertexAttribPointer(locations.aCol,3,gl.FLOAT,false,36,12);gl.vertexAttribPointer(locations.aNormal,3,gl.FLOAT,false,36,24);gl.drawArrays(gl.TRIANGLES,0,count)}
 
 
 function relative(x,z,dx,dz,a){return [x+dx*Math.cos(a)+dz*Math.sin(a),z-dx*Math.sin(a)+dz*Math.cos(a)]}
+// NIGHT CITY v5 — sculpted protagonist mesh, local joints and costume details.
+// Character coordinates: local x = right, local y = height, local +z = face/forward.
+function protagonist(p){
+  const a=p.yaw,x=p.x,z=p.z;
+  const moving=Math.min(1,Math.abs(p.speed)/6.6);
+  const gait=Math.sin(p.walk*.97)*moving;
+  const rebound=Math.abs(Math.sin(p.walk*.97))*moving*.040;
+  const punch=p.punch>0?Math.sin((.22-p.punch)/.22*Math.PI):0;
+  const firing=flash>0;
+  const suit='#e8e3d8',suitShade='#c1bcb2',suitLight='#f8f4e8',trousers='#d6d1c6';
+  const skin='#b98266',skinLight='#d49a77',skinShadow='#8f5b45';
+  const dark='#15161d',hair='#17151b',gold='#c79c44';
+  function at(X,Y,Z){let q=relative(x,z,X,Z,a);return [q[0],Y+rebound,q[1]]}
+  function face(points,col){poly(points.map(v=>at(v[0],v[1],v[2])),col)}
+  function ball(X,Y,Z,rx,ry,rz,col,sides=10){let q=at(X,Y,Z);sphere(q[0],q[1],q[2],rx,ry,rz,col,sides)}
+  function part(p1,p2,r1,r2,col,seg=10){
+    const [x1,y1,z1]=at(...p1),[x2,y2,z2]=at(...p2);
+    let vx=x2-x1,vy=y2-y1,vz=z2-z1,le=Math.hypot(vx,vy,vz)||1;vx/=le;vy/=le;vz/=le;
+    let ax=Math.abs(vy)>.94?1:0,ay=Math.abs(vy)>.94?0:1,az=0;
+    let ux=vy*az-vz*ay,uy=vz*ax-vx*az,uz=vx*ay-vy*ax;let ul=Math.hypot(ux,uy,uz)||1;ux/=ul;uy/=ul;uz/=ul;
+    const wx=vy*uz-vz*uy,wy=vz*ux-vx*uz,wz=vx*uy-vy*ux;
+    let f=[],t=[];for(let i=0;i<seg;i++){let ang=i*TAU/seg,s=Math.cos(ang),c=Math.sin(ang);f.push([x1+r1*(s*ux+c*wx),y1+r1*(s*uy+c*wy),z1+r1*(s*uz+c*wz)]);t.push([x2+r2*(s*ux+c*wx),y2+r2*(s*uy+c*wy),z2+r2*(s*uz+c*wz)])}
+    for(let i=0;i<seg;i++)poly([f[i],f[(i+1)%seg],t[(i+1)%seg],t[i]],col);
+    poly(f.slice().reverse(),col);poly(t,col);
+  }
+  function torso(rings,col,N=12){
+    let sections=rings.map(([yy,wide,deep,zcenter=0])=>Array.from({length:N},(_,i)=>{
+      const t=i*TAU/N;return at(Math.cos(t)*wide,yy,Math.sin(t)*deep+zcenter)}));
+    for(let j=0;j<sections.length-1;j++)for(let i=0;i<N;i++){
+      let ni=(i+1)%N;poly([sections[j][i],sections[j][ni],sections[j+1][ni],sections[j+1][i]],col)
+    }
+    poly(sections[0].slice().reverse(),col);poly(sections[sections.length-1],col)
+  }
+  function stripe(from,to,width,col){
+    const u=at(...from),v=at(...to),dx=v[0]-u[0],dy=v[1]-u[1],dz=v[2]-u[2],len=Math.hypot(dx,dy,dz)||1;
+    const px=width/2*dy/len,py=-width/2*dx/len;
+    poly([[u[0]+px,u[1]+py,u[2]],[u[0]-px,u[1]-py,u[2]],[v[0]-px,v[1]-py,v[2]],[v[0]+px,v[1]+py,v[2]]],col)
+  }
+  // Soft contact shadow; tailored trousers with different thigh and shin masses.
+  disc(x,z,.66,'#14212b',.017);
+  const legs=[-1,1];
+  for(const side of legs){
+    const swing=gait*side*.29;
+    const knee=[side*.185,.69,swing*.68+.035];
+    const shoe=[side*.19,.17,swing*.98+.08];
+    const hip=[side*.19,1.37,0];
+    ball(side*.19,1.30,0,.235,.25,.24,trousers,10);
+    part(hip,knee,.21,.153,trousers,11);
+    ball(...knee,.158,.15,.160,suitShade,9);
+    part(knee,[shoe[0],.24,shoe[2]],.152,.104,trousers,10);
+    ball(shoe[0],.14,shoe[2]+.125,.146,.125,.29,'#222327',10);
+    // Shoe sole and seam
+    ball(shoe[0],.07,shoe[2]+.13,.156,.045,.29,'#0e1117',9);
+  }
+  // Sculpted torso, broad shoulders, narrow waist, jacket open in front.
+  torso([[1.30,.286,.19],[1.50,.33,.216],[1.79,.39,.245],[2.04,.385,.247],[2.19,.33,.21]],suit,14);
+  // Wrinkle/shadow along shoulders, underarms and coat seam.
+  torso([[1.31,.281,.197],[1.37,.314,.213],[1.47,.328,.21]],suitShade,14);
+  ball(0,1.51,-.10,.28,.21,.17,suit,10);
+  // Black silk shirt and open throat, contrasting with ivory jacket.
+  face([[-.188,2.151,.212],[.188,2.151,.212],[.238,1.79,.266],[-.235,1.79,.266]],'#20232c');
+  face([[-.11,2.15,.239],[0,2.025,.295],[0,1.89,.301],[-.13,2.02,.269]],'#34343b');
+  face([[.11,2.15,.239],[0,2.025,.295],[0,1.89,.301],[.13,2.02,.269]],'#323037');
+  // Suit lapels and folded collar; shadows make the chest less blocky.
+  face([[-.345,2.145,.218],[-.155,2.148,.249],[-.085,1.81,.300],[-.276,1.91,.252]],'#fff8eb');
+  face([[.345,2.145,.218],[.155,2.148,.249],[.085,1.81,.300],[.276,1.91,.252]],'#fff8eb');
+  face([[-.348,2.145,.222],[-.27,1.93,.260],[-.23,1.82,.265],[-.364,1.953,.23]],suitShade);
+  face([[.348,2.145,.222],[.27,1.93,.260],[.23,1.82,.265],[.364,1.953,.23]],suitShade);
+  // Gold chain and buttons.
+  stripe([-.093,1.99,.302],[0,1.905,.308],.012,gold);
+  stripe([[0,1.905,.308][0],1.905,.308],[.09,1.99,.302],.012,gold);
+  for(let b=0;b<3;b++){ball(.13,1.76-b*.135,.258,.024,.025,.015,gold,7)}
+  // Jacket breast pocket and burgundy pocket square.
+  stripe([-.322,1.965,.246],[-.19,1.957,.275],.014,'#888080');
+  face([[-.30,1.977,.248],[-.24,2.022,.253],[-.205,1.985,.264]],'#862c3a');
+  // Neck under the open shirt.
+  part([0,2.151,0],[0,2.342,0],.115,.104,skin,12);
+  ball(0,2.285,.055,.131,.11,.132,skinLight,10);
+  // Arms: upper arm elbow wrist, dynamic gait; right arm strikes or holds pistol.
+  for(const side of legs){
+    let armSwing=-gait*side*.17;
+    let elbow=[side*.485,1.52,armSwing+.03];
+    let hand=[side*.47,1.24,armSwing*1.75+.10];
+    if(side===1&&punch>.02){elbow=[.48,1.92,.27+punch*.16];hand=[.39,1.90,.45+punch*.62]}
+    if(side===1&&firing){elbow=[.43,1.85,.18];hand=[.31,1.73,.47]}
+    ball(side*.40,2.063,0,.197,.212,.20,suit,10);
+    part([side*.42,2.05,0],elbow,.178,.134,suit,10);
+    ball(...elbow,.14,.142,.138,suitShade,9);
+    part(elbow,[hand[0],hand[1]+.086,hand[2]],.133,.097,suit,9);
+    ball(...hand,.10,.135,.10,skin,9);
+    part([side*.42,1.39,hand[2]],hand,.085,.075,skin,8);
+    // Cuff button and shirt cuff break up sleeve silhouette.
+    let cf=[hand[0],hand[1]+.15,hand[2]-.015];
+    ball(...cf,.12,.055,.12,'#f8f6ec',8);
+  }
+  // Pistol is held in the right hand only while shooting.
+  if(firing){
+    const muzzle=at(.31,1.81,.69);
+    const grip=at(.31,1.73,.49);
+    part(grip,muzzle,.07,.067,'#34383e',8);
+    ball(.31,1.81,.72,.062,.05,.11,'#a3abb3',9);
+  }
+  // Jaw/head with cheek bones, strong nasal bridge, ears and dark hairline.
+  ball(0,2.54,.018,.260,.330,.241,skin,13);
+  ball(0,2.359,.081,.192,.135,.168,skin,13);
+  ball(0,2.402,.122,.205,.139,.175,skinLight,12);
+  for(const side of legs){
+    ball(side*.251,2.54,.008,.053,.09,.052,skinShadow,10);
+    ball(side*.266,2.547,.052,.026,.048,.022,skin,8);
+    ball(side*.153,2.506,.162,.117,.093,.091,skinLight,10);
+  }
+  // Nose sculpt with nostrils and cheek highlights.
+  ball(0,2.525,.220,.055,.089,.067,skinLight,12);
+  ball(0,2.467,.264,.067,.042,.046,'#c88a70',11);
+  for(const side of legs){ball(side*.041,2.464,.299,.012,.010,.010,skinShadow,8)}
+  // Eye sockets, whites, irises, pupils and eyebrows.
+  for(const side of legs){
+    ball(side*.108,2.615,.223,.082,.033,.025,'#755343',10);
+    ball(side*.11,2.617,.250,.053,.021,.012,'#e6d8c9',10);
+    ball(side*.107,2.615,.262,.018,.019,.008,'#394843',9);
+    ball(side*.107,2.614,.270,.009,.012,.007,'#13171b',8);
+    stripe([side*.045,2.683,.240],[side*.176,2.675,.218],.023,hair);
+  }
+  // Scar: diagonal shallow raised line on left cheek, not blood/gore.
+  stripe([-.207,2.565,.204],[-.151,2.462,.251],.017,'#e4b4aa');
+  stripe([-.199,2.561,.211],[-.154,2.464,.255],.006,'#855852');
+  // Mustache shadow, lips and stubble freckles for mature, stern look.
+  stripe([-.065,2.412,.249],[.066,2.412,.249],.026,'#533e3b');
+  stripe([-.055,2.388,.238],[.055,2.388,.238],.016,'#ad716e');
+  for(let i=0;i<10;i++){const sx=(i%5-2)*.043,sy=2.36+Math.floor(i/5)*.026;ball(sx,sy,.217,.006,.007,.008,'#816053',6)}
+  // Slicked-back charcoal hair: separate sculpted scalp with swept strands.
+  ball(0,2.808,-.036,.265,.166,.264,hair,14);
+  ball(-.105,2.817,.048,.153,.116,.172,'#24222a',11);
+  for(let i=0;i<5;i++){
+    const xx=(i-2)*.078;
+    stripe([xx-.045,2.838,.102],[xx+.038,2.89,-.15],.035,i%2?'#201d25':'#2d2930');
+  }
+  ball(-.236,2.691,-.026,.064,.125,.096,hair,9);
+  ball(.236,2.691,-.026,.064,.125,.096,hair,9);
+  // Motion-highlighted heel silhouette to read at low phone resolutions.
+}
+
 function person(p,hero=false){if(p.h<=0)return;const {x,z}=p,a=p.yaw,step=hero?Math.sin(player.walk*1.7)*Math.min(1,Math.abs(player.speed)/6)*.25:Math.sin(time*4+p.step)*.08;
 disc(x,z,.68,'#13222d',.018);const coat=hero?'#e6e0d5':p.police?'#214d6f':p.hostile?'#9b4856':'#536e79',trouser=hero?'#222636':p.police?'#18293c':'#293e4c',skin=hero?'#c89473':'#b8896e';
 for(const s of [-1,1]){let [lx,lz]=relative(x,z,s*.16,step*s,a);box(lx,.13,lz,.27,1.0,.33,trouser,a);let [bx,bz]=relative(lx,lz,0,.10,a);box(bx,.05,bz,.30,.24,.50,'#111b27',a);let [ax,az]=relative(x,z,s*.42,-step*s*.45,a);box(ax,1.22,az,.23,.91,.38,coat,a);sphere(ax,1.13,az,.13,.17,.16,skin,8)}
@@ -91,8 +282,8 @@ function mdata(){switch(mission){case 0:return {title:'01 / ВСТРЕЧА',desc
 function setMission(n){mission=n;let m=mdata();info(n===4?'🏆 ВСЕ МИССИИ ПРОЙДЕНЫ! +$2000':`✅ ${m.title}`);money+=n===4?2000:300;if(n===3){wanted=3;info('🚨 ТРЕВОГА! ПОЛИЦИЯ НА ХВОСТЕ')}}
 function doPunch(){if(state!=='playing'||car||punchCd>0)return;punchCd=.44;player.punch=.20;let n=peds.filter(p=>p.h>0&&dst(p,player)<3.2).sort((a,b)=>dst(a,player)-dst(b))[0];if(n){n.h-=45;n.hit=.3;addParticle(n.x,n.z,'#f8b97b');if(!n.hostile){wanted=Math.min(3,wanted+1);info('🚨 Вызвана полиция!')}else if(n.h<=0)money+=100;}else info('✊ Мимо! Подойди ближе')}
 function doShoot(){if(state!=='playing'||shootCd>0)return;shootCd=.27;flash=.17;let pos=getPos(),front=car?car.yaw:player.yaw;let targets=peds.filter(p=>p.h>0&&dst(p,pos)<30).map(p=>({p,dist:dst(p,pos),ang:Math.abs(Math.atan2(Math.sin(Math.atan2(p.x-pos.x,p.z-pos.z)-front),Math.cos(Math.atan2(p.x-pos.x,p.z-pos.z)-front)))})).filter(t=>t.ang<.65).sort((a,b)=>(a.ang*.9+a.dist*.01)-(b.ang*.9+b.dist*.01));if(targets.length){let t=targets[0].p;t.h-=38;t.hit=.27;addParticle(t.x,t.z);if(!t.hostile){wanted=Math.min(3,wanted+1)}else if(t.h<=0){money+=100;info('💥 Цель обезврежена +$100')}}else{let x=pos.x+Math.sin(front)*12,z=pos.z+Math.cos(front)*12;addParticle(x,z,'#ffdba9')}if(wanted<1)wanted=1}
-function doInteract(){if(state!=='playing')return;if(car){car.occupied=false;let px=car.x+Math.cos(car.yaw)*3,pz=car.z-Math.sin(car.yaw)*3;if(collision(px,pz)){px=car.x+Math.sin(car.yaw)*4;pz=car.z+Math.cos(car.yaw)*4}player.x=px;player.z=pz;player.yaw=car.yaw;car=null;info('🚶 Вышел из машины');return}let v=cars.filter(c=>dst(c,player)<6.2).sort((a,b)=>dst(a,player)-dst(b))[0];if(v){car=v;v.occupied=true;v.speed=0;camera.yaw=v.yaw+Math.PI;player.x=v.x;player.z=v.z;info('🚘 Теперь ты за рулём')}else info('Подойди к машине ближе')}
-function update(dt){time+=dt;if(state!=='playing')return;shootCd=Math.max(0,shootCd-dt);punchCd=Math.max(0,punchCd-dt);flash=Math.max(0,flash-dt);player.punch=Math.max(0,player.punch-dt);let mx=stick.x+(key.d||key.ArrowRight?1:0)-(key.a||key.ArrowLeft?1:0),my=-stick.y+(key.w||key.ArrowUp?1:0)-(key.s||key.ArrowDown?1:0),mag=Math.hypot(mx,my);if(mag>1){mx/=mag;my/=mag}if(car){
+function doInteract(){if(state!=='playing')return;if(car){car.occupied=false;let px=car.x+Math.cos(car.yaw)*3,pz=car.z-Math.sin(car.yaw)*3;if(collision(px,pz)){px=car.x+Math.sin(car.yaw)*4;pz=car.z+Math.cos(car.yaw)*4}player.x=px;player.z=pz;player.yaw=car.yaw;car=null;info('🚶 Вышел из машины');return}let v=cars.filter(c=>dst(c,player)<6.2).sort((a,b)=>dst(a,player)-dst(b))[0];if(v){car=v;v.occupied=true;v.speed=0;camera.yaw=v.yaw+Math.PI;cameraSwipe=0;player.x=v.x;player.z=v.z;info('🚘 Теперь ты за рулём')}else info('Подойди к машине ближе')}
+function update(dt){time+=dt;if(state!=='playing')return;if(heroInspect){player.speed=0;return;}shootCd=Math.max(0,shootCd-dt);punchCd=Math.max(0,punchCd-dt);flash=Math.max(0,flash-dt);player.punch=Math.max(0,player.punch-dt);let mx=stick.x+(key.d||key.ArrowRight?1:0)-(key.a||key.ArrowLeft?1:0),my=-stick.y+(key.w||key.ArrowUp?1:0)-(key.s||key.ArrowDown?1:0),mag=Math.hypot(mx,my);if(mag>1){mx/=mag;my/=mag}if(car){
   let drive=my,steer=mx;
   // Smooth acceleration/deceleration. The joystick is throttle and steering, not absolute speed.
   // With chase camera behind the vehicle, joystick right must turn right ON SCREEN.
@@ -116,7 +307,7 @@ function update(dt){time+=dt;if(state!=='playing')return;shootCd=Math.max(0,shoo
 for(let p of peds){if(p.h<=0)continue;p.step+=dt;if(p.hostile||p.police){let target=getPos(),dd=dst(p,target);if(dd<46){let a=Math.atan2(target.x-p.x,target.z-p.z);p.yaw=a;let sp=p.police?3.6:2.3;if(dd>(p.police?4:11)){let nx=p.x+Math.sin(a)*dt*sp,nz=p.z+Math.cos(a)*dt*sp;if(!collision(nx,nz,.7)){p.x=nx;p.z=nz}}p.hit-=dt;if(dd<15&&p.hit<=0){hp-=p.police?5:7;p.hit=p.police?2.2:2.5;flash=.12}}}else if(p.step>3){p.yaw+=rand(-1.8,1.8);p.step=0}else{let nx=p.x+Math.sin(p.yaw)*dt*.64,nz=p.z+Math.cos(p.yaw)*dt*.64;if(!collision(nx,nz,.65)){p.x=nx;p.z=nz}}}
 for(let q=particles.length-1;q>=0;q--){let p=particles[q];p.x+=p.vx*dt;p.y+=p.vy*dt;p.z+=p.vz*dt;p.life-=dt;if(p.life<=0)particles.splice(q,1)}
 if(wanted>0){spawnCd-=dt;if(spawnCd<=0){spawnCd=9;let n=peds.filter(p=>p.police&&p.h>0).length;if(n<Math.min(6,wanted*2)){let target=getPos(),a=rand(0,TAU),rx=target.x+Math.sin(a)*32,rz=target.z+Math.cos(a)*32;if(!collision(rx,rz))peds.push({x:rx,z:rz,yaw:a,h:100,hostile:false,police:true,speed:3.6,step:0,hit:0})}}}if(hp<=0){state='dead';$('hud').classList.add('hidden');$('overlay').classList.remove('hidden');$('intro').textContent='Тебя поймали. Но в этом городе всегда можно начать заново.';$('start').textContent='ПОПРОБОВАТЬ СНОВА';return}let m=mdata(),p=getPos();if(mission===0&&Math.hypot(p.x-m.x,p.z-m.z)<7)setMission(1);if(mission===1&&car&&Math.hypot(p.x-m.x,p.z-m.z)<11)setMission(2);if(mission===2&&peds.filter(p=>p.hostile&&p.h>0).length===0)setMission(3);if(mission===3&&Math.hypot(p.x-m.x,p.z-m.z)<13){wanted=0;setMission(4)}
-$('money').textContent=`💵 $${money} · ${car?'🚘 '+Math.round(Math.abs(car.speed)*3.6)+' км/ч':'🏃 Пешком'}`;$('hp').style.width=clamp(hp,0,100)+'%';$('hptext').textContent=`Здоровье: ${Math.max(0,Math.ceil(hp))}`;$('wanted').textContent='★'.repeat(wanted)+'☆'.repeat(3-wanted);$('mtitle').textContent=m.title;$('mdesc').textContent=m.desc+(mission<4?` · ${Math.round(dst(m,p))} м`:'' );$('run').querySelector('strong').textContent=car?'🛑':'⚡';$('run').lastChild.textContent=car?'ТОРМОЗ':'БЕГ';if(performance.now()>Number($('toast').dataset.to||0))$('toast').classList.remove('show')}
+$('heroView').style.display=car?'none':'block';$('money').textContent=`💵 $${money} · ${car?'🚘 '+Math.round(Math.abs(car.speed)*3.6)+' км/ч':'🏃 Пешком'}`;$('hp').style.width=clamp(hp,0,100)+'%';$('hptext').textContent=`Здоровье: ${Math.max(0,Math.ceil(hp))}`;$('wanted').textContent='★'.repeat(wanted)+'☆'.repeat(3-wanted);$('mtitle').textContent=m.title;$('mdesc').textContent=m.desc+(mission<4?` · ${Math.round(dst(m,p))} м`:'' );$('run').querySelector('strong').textContent=car?'🛑':'⚡';$('run').lastChild.textContent=car?'ТОРМОЗ':'БЕГ';if(performance.now()>Number($('toast').dataset.to||0))$('toast').classList.remove('show')}
 
 function rngFake(a,b,c){const v=Math.sin(a*98.6+b*21.27+c*11.58)*54178.5;return v-Math.floor(v)}
 function buildGraphics(){mesh=[]; // One-time world mesh: road & building geometry stays perfectly stable.
@@ -206,7 +397,7 @@ let m=mdata(),p=getPos(),md=Math.hypot(m.x-p.x,m.z-p.z);
 if(mission<4){disc(m.x,m.z,3.4,'#77633d',.05);sphere(m.x,2.5+Math.sin(time*2.4)*.30,m.z,.65,.9,.65,'#ffc96e',8)}
 for(const c of cars)if(Math.hypot(c.x-camera.x,c.z-camera.z)<140)drawCar(c);
 for(const p of peds)if(Math.hypot(p.x-camera.x,p.z-camera.z)<110)person(p);
-if(!car)person(player,true);
+if(!car)protagonist(player);
 for(const p of particles)box(p.x,p.y,p.z,.24,.24,.24,p.col);
 const dynamicCount=upload(dynamicVbo,mesh,gl.DYNAMIC_DRAW);
 gl.clearColor(0.040,0.07,0.12,0);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
@@ -217,10 +408,16 @@ $('hurt').style.opacity=flash>0?String(clamp(flash*3.2,0,.42)):'0';drawMini();}
 
 function drawMini(){mc.clearRect(0,0,116,116);mc.fillStyle='#10192a';mc.fillRect(0,0,116,116);let p=getPos(),s=1.02;mc.save();mc.translate(58,58);for(let k=-3;k<=3;k++){let x=(k*45-p.x)*s,z=(k*45-p.z)*s;mc.fillStyle='#3c4559';mc.fillRect(x-5.5*s,-58,11*s,116);mc.fillRect(-58,z-5.5*s,116,11*s)}for(let b of buildings){let x=(b.x-p.x)*s,z=(b.z-p.z)*s;if(Math.abs(x)<65&&Math.abs(z)<65){mc.fillStyle='#243c4a';mc.fillRect(x-b.w*s/2,z-b.d*s/2,b.w*s,b.d*s)}}if(mission<4){let m=mdata(),x=(m.x-p.x)*s,z=(m.z-p.z)*s;mc.fillStyle='#ffce68';mc.beginPath();mc.arc(clamp(x,-53,53),clamp(z,-53,53),5,0,TAU);mc.fill()}for(let v of peds){if(v.police&&v.h>0){let x=(v.x-p.x)*s,z=(v.z-p.z)*s;mc.fillStyle='#fa7475';mc.fillRect(x-2,z-2,4,4)}}mc.rotate(-getPos().yaw);mc.fillStyle='#78d9ff';mc.beginPath();mc.moveTo(0,7);mc.lineTo(-6,-6);mc.lineTo(6,-6);mc.closePath();mc.fill();mc.restore()}
 let lastPaint=0;function loop(t){const dt=Math.min(.045,(t-last)/1000);last=t;update(dt);if(state==='playing'&&t-lastPaint>33){render();lastPaint=t}requestAnimationFrame(loop)}requestAnimationFrame(loop);
-function reset(){state='playing';hp=100;money=0;wanted=0;mission=0;player={x:0,z:4,yaw:Math.PI,speed:0,shoot:0,punch:0,walk:0};car=null;peds.length=0;cars.length=0;buildReset();$('overlay').classList.add('hidden');$('hud').classList.remove('hidden');info('📍 Найди связного: жёлтый маркер!')}
-function buildReset(){for(let c of initialCars)cars.push({...c});for(let p of initialPeds)peds.push({...p});for(let p of peds)if(p.hostile)p.h=100;camera.x=0;camera.z=22;camera.y=12;camera.yaw=0;spawnCd=5}
+function reset(){state='playing';heroInspect=false;$('hud').classList.remove('inspect');$('heroView').textContent='👤 ГЕРОЙ';hp=100;money=0;wanted=0;mission=0;player={x:0,z:4,yaw:Math.PI,speed:0,shoot:0,punch:0,walk:0};car=null;peds.length=0;cars.length=0;buildReset();$('overlay').classList.add('hidden');$('hud').classList.remove('hidden');info('📍 Найди связного: жёлтый маркер!')}
+function buildReset(){for(let c of initialCars)cars.push({...c});for(let p of initialPeds)peds.push({...p});for(let p of peds)if(p.hostile)p.h=100;camera.x=player.x;camera.z=player.z+8.6;camera.y=4.25;camera.yaw=0;cameraSwipe=0;cameraPitch=0;spawnCd=5}
 const initialCars=cars.map(c=>({...c})),initialPeds=peds.map(p=>({...p}));$('start').addEventListener('click',()=>{if(state==='paused'){state='playing';$('overlay').classList.add('hidden');$('hud').classList.remove('hidden')}else reset()});$('pause').addEventListener('click',()=>{if(state==='playing'){state='paused';$('overlay').classList.remove('hidden');$('hud').classList.add('hidden');$('intro').textContent='Пауза. Вернись и продолжай захватывать ночной город.';$('start').textContent='ПРОДОЛЖИТЬ'}});
-const joy=$('joy'),nub=$('nub');let joyPointer=null;function joyMove(e){let r=joy.getBoundingClientRect();let ox=e.clientX-(r.left+r.width/2),oy=e.clientY-(r.top+r.height/2),lim=r.width*.31;let m=Math.hypot(ox,oy);if(m>lim){ox=ox/m*lim;oy=oy/m*lim}stick.x=ox/lim;stick.y=oy/lim;nub.style.transform=`translate(${ox}px,${oy}px)`}joy.addEventListener('pointerdown',e=>{e.preventDefault();joyPointer=e.pointerId;joy.setPointerCapture(e.pointerId);joyMove(e)});joy.addEventListener('pointermove',e=>{if(e.pointerId===joyPointer)joyMove(e)});function joyUp(e){if(e.pointerId!==joyPointer)return;joyPointer=null;stick.x=0;stick.y=0;nub.style.transform='translate(0,0)'}joy.addEventListener('pointerup',joyUp);joy.addEventListener('pointercancel',joyUp);
+$('heroView').addEventListener('click',()=>{if(state!=='playing'||car)return;heroInspect=!heroInspect;$('hud').classList.toggle('inspect',heroInspect);$('heroView').textContent=heroInspect?'↩ ВЕРНУТЬСЯ':'👤 ГЕРОЙ';if(heroInspect){camera.yaw=player.yaw;cameraSwipe=0;cameraPitch=0;player.speed=0;const d=4.7;camera.x=player.x+Math.sin(camera.yaw)*d;camera.z=player.z+Math.cos(camera.yaw)*d;camera.y=2.48;}});
+const joy=$('joy'),nub=$('nub');let joyPointer=null;
+canvas.addEventListener('pointerdown',e=>{if(state!=='playing'||e.clientX<innerWidth*.35)return;camDragId=e.pointerId;camDownX=e.clientX;camDownY=e.clientY;cameraLookActive=true;canvas.setPointerCapture(e.pointerId)});
+canvas.addEventListener('pointermove',e=>{if(e.pointerId!==camDragId)return;const ddx=e.clientX-camDownX,ddy=e.clientY-camDownY;camDownX=e.clientX;camDownY=e.clientY;cameraSwipe+=ddx*.006;cameraPitch=clamp(cameraPitch-ddy*.016,-1.7,2.0)});
+function camRelease(e){if(e.pointerId!==camDragId)return;camDragId=-1;cameraLookActive=false}
+canvas.addEventListener('pointerup',camRelease);canvas.addEventListener('pointercancel',camRelease);
+function joyMove(e){let r=joy.getBoundingClientRect();let ox=e.clientX-(r.left+r.width/2),oy=e.clientY-(r.top+r.height/2),lim=r.width*.31;let m=Math.hypot(ox,oy);if(m>lim){ox=ox/m*lim;oy=oy/m*lim}stick.x=ox/lim;stick.y=oy/lim;nub.style.transform=`translate(${ox}px,${oy}px)`}joy.addEventListener('pointerdown',e=>{e.preventDefault();joyPointer=e.pointerId;joy.setPointerCapture(e.pointerId);joyMove(e)});joy.addEventListener('pointermove',e=>{if(e.pointerId===joyPointer)joyMove(e)});function joyUp(e){if(e.pointerId!==joyPointer)return;joyPointer=null;stick.x=0;stick.y=0;nub.style.transform='translate(0,0)'}joy.addEventListener('pointerup',joyUp);joy.addEventListener('pointercancel',joyUp);
 $('punch').addEventListener('pointerdown',e=>{e.preventDefault();doPunch()});$('fire').addEventListener('pointerdown',e=>{e.preventDefault();e.currentTarget.setPointerCapture(e.pointerId);doShoot();shootHeld=true});$('fire').addEventListener('pointerup',()=>shootHeld=false);$('fire').addEventListener('pointercancel',()=>shootHeld=false);let shootHeld=false;setInterval(()=>{if(shootHeld)doShoot()},80);$('interact').addEventListener('pointerdown',e=>{e.preventDefault();doInteract()});$('run').addEventListener('pointerdown',e=>{e.preventDefault();e.currentTarget.setPointerCapture(e.pointerId);sprint=true;accel=true});$('run').addEventListener('pointerup',()=>{sprint=false;accel=false});$('run').addEventListener('pointercancel',()=>{sprint=false;accel=false});window.addEventListener('keydown',e=>{let k=e.key.toLowerCase();key[k]=true;if([' ','arrowup','arrowdown','arrowleft','arrowright'].includes(k))e.preventDefault();if(e.repeat)return;if(k==='e')doInteract();if(k==='f')doPunch();if(k===' ')doShoot();if(k==='shift'){sprint=true;accel=true}if(k==='p')$('pause').click()});window.addEventListener('keyup',e=>{key[e.key.toLowerCase()]=false;if(e.key.toLowerCase()==='shift'){sprint=false;accel=false}});document.addEventListener('visibilitychange',()=>{if(document.hidden){stick.x=0;stick.y=0;shootHeld=false;sprint=false;accel=false}});
 })();
 </script></body></html>
